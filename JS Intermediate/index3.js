@@ -19,3 +19,30 @@
 const animals = ['Tiger', 'Giraffe']
 console.log(animals)
 
+animals.push('Cat', 'Dog')
+console.log(animals)
+
+animals.unshift('Rabbit', 'Bear')
+console.log(animals)
+
+animals.sort()
+console.log(animals)
+
+function replaceMiddleAnimal(newValue) {
+    const middle = Math.floor(animals.length / 2);
+    animals[middle] = newValue;
+}
+
+replaceMiddleAnimal('Gorilla')
+console.log(animals)
+
+function findMatchingAnimals(beginsWith) {
+    const searchString = beginsWith.toLowerCase();
+    return animals.filter(animal => 
+        animal.toLowerCase().startsWith(searchString)
+        );
+}
+
+console.log(findMatchingAnimals('g'))
+console.log(findMatchingAnimals('T'))
+

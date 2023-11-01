@@ -5,6 +5,24 @@
 // ellipsis (...) added to the end if it was too long, or the original text otherwise.
 // b) Write another variant of the truncate function that uses a conditional operator.
 
-console.log(truncate('This text will be truncated if it is too long', 25))
+// console.log(truncate('This text will be truncated if it is too long', 25))
 // This text will be truncat...
 
+function truncate(str, max) {
+ 
+    if (str.length > max) {
+      return str.slice(0, max - 3) + "...";
+    } else {
+      return str;
+    }
+  }
+  
+  function truncateConOperator(str, max) {
+
+    return str.length > max ? str.slice(0, max - 3) + "..." : str;
+  }
+  
+  console.log(truncate("This text will be truncated if it is too long", 25));
+  
+  console.log(truncateConOperator("This text will be truncated if it is too long", 30)
+  );
