@@ -18,3 +18,18 @@ function makeCounter() {
     let counter1 = makeCounter();
     counter1(); // 1
     counter1(); // 2
+
+//create a second counter
+let counter2 = makeCounter();
+counter2();
+counter2();
+
+//counter to test startFrom
+let counter3 = makeCounter(8);
+counter3();
+counter3();
+
+// counter to test incrementBy
+let counter4 = makeCounter(3, 3);
+counter4();
+counter4();

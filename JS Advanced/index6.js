@@ -13,3 +13,24 @@ function multiply(a, b) {
 // c) Modify multiply to take 4 parameters and multiply all of them, and test that your
 // delay prototype function still works.
 
+Function.prototype.delay = function (ms) {   
+    let func = this;
+    return function (a, b) {
+      setTimeout(() => func(a, b), ms);
+    };
+  };
+  
+  Function.prototype.delay = function(ms) {  
+      let func = this;
+      return function(...args) {
+          setTimeout(() => func.apply(null, args), ms)
+      }
+  }
+  
+  function multiply(a, b, c, d) {  
+      console.log(a * b * c * d)
+  }
+  
+  multiply.delay(1000)(3, 6, 9, 12)
+
+  

@@ -21,3 +21,13 @@ function printMe() {
     setTimeout( printMe, 100);
     setTimeout( printMe, 200);
     setTimeout( printMe, 300);
+
+    function debounce(func, ms) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                func(...args);
+            }, ms);                
+
+            

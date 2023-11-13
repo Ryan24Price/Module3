@@ -8,3 +8,40 @@
 // c) Extend one of the above functions to accept a limit argument, which tells it how many
 // numbers to print before stopping.
 
+
+function printFibonacci() {
+    let[prev, curr] = [0, 1];
+    let interval = setInterval(() => {
+        console.log(`[Interval] ${curr}`);
+        [prev, curr] = [curr, prev + curr];
+    }, 1000);
+    return interval;
+}
+
+const intervalId = printFibonacci();
+
+
+setTimeout(() => {
+    clearInterval(intervalId);
+    console.log('Stopped printing interval Fibonacci sequence after ten seconds')
+}, 10000);
+
+
+function printFibonacciTimeouts (limit) {
+    let [prev, curr] = [0, 1];
+    let count = 0;
+
+    function printNext() {
+        if (count >= limit) {         
+            return; 
+        }
+        console.log(`[Timeout] ${curr}`); [prev, curr] = [curr, prev + curr];
+        count++;
+
+        setTimeout(printNext, 1000);
+    }
+    printNext()
+}
+
+printFibonacciTimeouts(5);
+

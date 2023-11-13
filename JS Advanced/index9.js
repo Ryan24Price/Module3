@@ -13,4 +13,23 @@ function randomDelay() {
     }
     randomDelay().then(() => console.log('There appears to have been a delay.'));
 
+    return new Promise((resolve, reject) => {
+        
+        let delay = Math.floor(Math.random() * 20 + 1) * 1000;
+        setTimeout(() => {
+            
+            if (delay % 2000 === 0) {
+                resolve(delay);
+            } else {
+                reject(delay)
+            }
+        }, delay);
+    })
+}
+
+randomDelay()
+    .then((delay) => console.log(`Delay of ${delay / 1000} seconds was successful.`))
+    .catch((delay) => console.log(`Delay of ${delay / 1000} seconds failed, it was an odd number.`));
+
     
+

@@ -35,4 +35,38 @@ class DigitalClock {
     // should print a 'Wake Up' message and stop ticking. This wakeupTime parameter should
     // default to 07:00 if not supplied. 
 
+    class PrecisionClock extends DigitalClock {
+
+        constructor(prefix, precision = 1000) {
+          super(prefix);
+          this.precision = precision;
+        }
+        start() {
+          this.display();
+          this.timer = setInterval(() => this.display(), this.precision);
+        }
+      }
+      
     
+      class AlarmClock extends DigitalClock {   
+          constructor(prefix, wakeupTime = "07:00:00") {
+              super(prefix);
+              this.wakeupTime = wakeupTime;
+          }
+          display() {
+          super.display();
+          let date = new Date();
+          let [hours, mins, secs] = [date.getHours(), date.getMinutes(), date.getSeconds()]
+          .map(num => num < 10 ? '0' + num : num.toString());
+          let currentTime = `${hours}:${mins}` + (this.wakeupTime.length === 5 ? '' : `:${secs}`);
+          if (currentTime === this.wakeupTime) {
+              console.log('Wake Up!');
+              this.stop();
+          }
+      }
+      }
+      
+      const alarmClock = new AlarmClock('Alarm Clock: ', "16:13")
+      alarmClock.start()
+
+      

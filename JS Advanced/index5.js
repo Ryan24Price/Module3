@@ -24,4 +24,18 @@ let car = {
     // e) Change another property of the car by creating a clone and overriding it, and test that
     // setTimeout still uses the bound value from d) 
 
-    
+    let car2023 = {...car, year: 2023}  
+
+car2023.description(); 
+
+setTimeout(() => car2023.description(), 200) 
+
+
+
+setTimeout(car.description.bind(car), 300);  
+
+let carFord = {...car, make: "Ford"}; 
+
+carFord.description();
+setTimeout(car.description.bind(car), 300);   
+

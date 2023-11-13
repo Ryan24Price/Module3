@@ -29,3 +29,36 @@ fetchURLData('https://jsonplaceholder.typicode.com/todos/1')
 .then(data => console.log(data))
 .catch(error => console.error(error.message));
 
+async function fetchURLDataAsync(url) {
+    try {
+      const response = await fetch(url);
+      if (response.status === 200) {
+        return await response.json();
+      } else {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+    } catch (error) {
+      console.error(`An error occurred: `, error.message);
+    }
+  }
+
+  async function fetchMultipleURLDataAsync(urls) {
+    try {
+      const promises = urls.map((url) => fetchURLDataAsync(url));
+      return await Promise.all(promises);
+    } catch (error) {
+      console.error(`An error occurred: `, error.message);
+    }
+  }
+  
+  fetchMultipleURLDataAsync([
+    "https://jsonplaceholder.typicode.com/todos/1",
+    "https://jsonplaceholder.typicode.com/todos/2",
+    "https://thisurldoesnotexist.typicode.com/todos/3",
+  ])
+    .then((results) => {
+      console.log(results);
+    })
+    .catch((error) => console.error(error));
+
+    

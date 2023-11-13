@@ -21,4 +21,24 @@ function Person(name, age, gender) {
     const person1 = new Person('James Brown', 73, 'male')
     console.log('person1: '+person1) //prints person1: [object Object]
 
-    
+    const person1 = new Person('James Brown', 73, 'male')
+const person2 = new Person('Kevin Hart', 48, 'male')  
+console.log('Person 1: '+person1) 
+console.log('Person 2: '+person2)
+
+function Student(name, age, gender, cohort) { 
+    this.cohort = cohort;
+}
+
+Student.prototype = Object.create(Person.prototype);  
+Student.prototype.constructor = Student;
+Student.prototype.toString = function() {
+    return Person.prototype.call(this) + `, cohort=${this.cohort}`
+}
+
+const student1 = new Student('Jenna Ortega', 23, 'female', 'cohort 1')  
+const student2 = new Student('vanessa hudgens', 27, 'female', 'cohort 2')
+
+console.log(`Student 1: `+ student1)
+console.log(`Student 2: `+ student2)
+
